@@ -11,13 +11,14 @@ function startGame() {
 currentButtonAction = startGame;
 
 function shuffleArray(a){
-    var i;
-    var x = [];
+    var tmp = [];
     for (k = a.length; k; k--){
-      i = Math.floor(Math.random()*k);
-      t = a[k-1];
-      x[k-1] = a[i];
-      x[i] = t;
+      tmp[k-1] = a[k-1];
+    }
+    var x = [];
+    while(tmp.length > 0){
+      var i = Math.floor(Math.random()*tmp.length)
+      x[x.length] = tmp.splice(i,1)[0];
     }
     return x;
 }
