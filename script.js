@@ -48,11 +48,13 @@ function estimationButtonClicked() {
     var estimationPercent = calculateEstimationPercent(inputDist, actualDist);
 
     guesses.push(estimationPercent);
+    if(guesses.length > 10) guesses.splice(0,1);
     var sum = 0;
     for(var i = 0; i<guesses.length; i++){
       sum = sum + parseInt(guesses[i]);
     }
     var average = sum/guesses.length;
+    average = average.toFixed(1);
 
     clearResult("You guessed " +inputDist+ " meters, which is <span style='color:"+calculateColor(estimationPercent)+"'>" +estimationPercent+"%</span> accurate, the actual distance is "+ currentLevel.distance +" meters. You're average is <span style='color:"+calculateColor(average)+"'>"+average+"%</span>");
 
@@ -80,7 +82,7 @@ function loadNextPicture(){
 
     currentLevel = data.pop();
     if(!currentLevel){
-      alert("hi")
+      alert("You reached the end! Reload the page to start over.")
       location.reload();
     }
 
