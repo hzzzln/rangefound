@@ -10,12 +10,18 @@
     </head>
     <body>
 
-        <h1>Rangefound</h1>
+        <h2>Rangefound</h2>
         <p>Practice the estimation of distances</p>
+        <p onclick="showHelp()" id="helpp"></p>
+        <div id='content'>
+        <p>You will be given a set of PUBG Screenshots. They will show a player, a house, a door or a window, a car, or some other object under a scope or iron sights.</p>
 
-        <img id="img" src="pictures/help.png">
+        <p>Try to guess how far that object is from the player, in meters. Enter your guess into the field below. Take note of the scope used, as that can have a big impact on the percieved distance. Right-click -> Show picture to zoom in.</p>
 
-        <br>
+        <p>Press enter and the next screen will show the actual distance, the map with the player and the object shown, and how well you guessed. Your average is also kept track of.</p>
+
+        <p>Each set will have 10 screenshots. Do multiple sets and see if you can improve!</p>
+        </div>
 
         <input type="number" name="" id="input" min="0" onkeyup="if (event.keyCode == 13) currentButtonAction()", autofocus="autofocus">
 

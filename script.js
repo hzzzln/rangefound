@@ -2,13 +2,55 @@ var currentLevel;
 var actualDist;
 var pictureDirectory = "pictures/";
 var guesses;
-function startGame() {
-    data = shuffleArray(gamedata);
-    loadNextPicture();
-    guesses = [];
+var average;
+var helpstring;
+
+function startGame(){
+  var helpp = document.getElementById('helpp')
+  helpp.innerHTML = "Press here for help";
+  helpstring = document.getElementById("content").innerHTML;
+  document.getElementById("content").innerHTML
+  showPicture();
+  newSet();
+}
+
+function newSet(){
+  data = shuffleForNewSet(10);
+  guesses = [];
+  loadNextPicture();
+}
+
+function showHelp(){
+  var helpp = document.getElementById('helpp')
+  helpp.innerHTML = "Press again to return";
+  helpp.onclick = showPicture;
+  var contentdiv = document.getElementById("content");
+  contentdiv.innerHTML = helpstring;
+}
+
+function showPicture(){
+  var helpp = document.getElementById('helpp')
+  helpp.innerHTML = "Press here for help";
+  helpp.onclick = showHelp;
+  var contentdiv = document.getElementById("content");
+  contentdiv.innerHTML = '<img id="img" src="pictures/help.png">'
+  if(currentLevel) document.getElementById("img").src=""+pictureDirectory+currentLevel.picture;
 }
 
 currentButtonAction = startGame;
+
+function shuffleForNewSet(imageCount){
+  x = [];
+  if(imageCount > gamedata.length){
+    alert("You reached the end! Reload the page to start over.");
+    location.reload();
+  }
+  while(x.length < imageCount){
+    var i = Math.floor(Math.random()*gamedata.length)
+    x[x.length] = gamedata.splice(i,1)[0];
+  }
+  return x;
+}
 
 function shuffleArray(a){
     var tmp = [];
@@ -53,7 +95,7 @@ function estimationButtonClicked() {
     for(var i = 0; i<guesses.length; i++){
       sum = sum + parseInt(guesses[i]);
     }
-    var average = sum/guesses.length;
+    average = sum/guesses.length;
     average = average.toFixed(1);
 
     clearResult("You guessed " +inputDist+ " meters, which is <span style='color:"+calculateColor(estimationPercent)+"'>" +estimationPercent+"%</span> accurate, the actual distance is "+ currentLevel.distance +" meters. You're average is <span style='color:"+calculateColor(average)+"'>"+average+"%</span>");
@@ -82,8 +124,9 @@ function loadNextPicture(){
 
     currentLevel = data.pop();
     if(!currentLevel){
-      alert("You reached the end! Reload the page to start over.")
-      location.reload();
+      alert("Finished a set! Your Score: "+average);
+      newSet();
+      loadNextPicture();
     }
 
 
