@@ -44,10 +44,6 @@ gamedata = [
       reference: "4202973871.jpg",
       distance: 58
   },{
-      picture: "7390809427.jpg",
-      reference: "5568488997.jpg",
-      distance: 220
-  },{
       picture: "1237353778.jpg",
       reference: "3342211229.jpg",
       distance: 137
@@ -83,9 +79,5 @@ gamedata = [
       picture: "9353848151.jpg",
       reference: "4945905785.jpg",
       distance: 427
-  },{
-      picture: "8762967908.jpg",
-      reference: "2281272028.jpg",
-      distance: 435
   }
 ]
